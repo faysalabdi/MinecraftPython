@@ -1,0 +1,10 @@
+import mcpi.minecraft as minecraft
+
+mc = minecraft.Minecraft.create()
+
+x = 2700
+
+y = 100
+z = 900
+
+mc.player.setPos(x, y, z)

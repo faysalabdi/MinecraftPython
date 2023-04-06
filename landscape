@@ -1,0 +1,146 @@
+from tkinter import Y
+import mcpi.minecraft as minecraft
+import random
+import mcpi.block as block
+import math
+
+
+
+
+
+
+mc = minecraft.Minecraft.create()
+
+pos = mc.player.getTilePos() 
+
+l_h = mc.getHeight(pos.x, pos.z)
+
+
+x = pos.x - random.randint(-100, 100)
+z = pos.z - random.randint(-100, 100)
+# y = pos.y + random.randint(5, 20) 
+
+y= mc.getHeight(x, z)
+
+
+
+def car_park():
+    
+    mc.setBlocks(pos.x +1 , pos.y, pos.z, pos.x + 150, pos.y + 100, pos.z + 149, block.AIR)
+    mc.setBlocks(pos.x + 1 , pos.y, pos.z, pos.x + 149, pos.y, pos.z + 148, block.GRASS)   
+
+car_park()
+
+
+def pillar(x, y, z):
+    
+    height = y + 5 + random.randint(0, 3)
+    #Pillar
+    mc.setBlocks(x, y + 1, z, x + 2, height, z+ 2, block.STONE_BRICK)
+    
+    size = random.randint(10, 15) 
+    #BRANCH
+    for i in range(size):
+        mc.setBlock(x + i + 1, height, z + 1, block.STONE_BRICK)
+        mc.setBlock(x - i + 1, height, z + 1, block.STONE_BRICK)
+        mc.setBlock(x + 1, height, z + i + 1 , block.STONE_BRICK)
+        mc.setBlock(x + 1, height, z - i +1  , block.STONE_BRICK)
+
+        height = height + 1
+    
+    minimum = size+ 1
+    #RECTANGLE
+
+    mc.setBlocks(x  -minimum + 1, height, z - minimum, x + minimum + 1  , height, z + minimum, block.STONE_BRICK)
+    
+    
+    
+
+#POOL
+    
+    mc.setBlocks(x + 6, y, z -10, x + 25, y -5, z + 20, block.AIR)
+    mc.setBlocks(x + 6, y, z -10, x + 25, y -6, z + 20, block.BEDROCK)
+    mc.setBlocks(x + 6, y, z -10, x + 25, y -5, z + 20, block.WATER_FLOWING)
+    
+    #Fences
+    mc.setBlocks(x + 5, y+ 1, z -11, x +5, y+3, z + 21, block.FENCE)
+    mc.setBlocks(x + 26, y+ 1, z -11, x +26, y+3, z + 21, block.FENCE)
+    
+    mc.setBlocks(x+ 5, y+ 1, z - 11 , x + 25, y+3, z - 11, block.FENCE)
+    mc.setBlocks(x+ 5, y+ 1, z +21 , x + 25, y+3, z +21, block.FENCE)
+           
+    
+# pillar(x, y, z)
+
+
+
+a =  pos.x + 20
+b= pos.z + random.randint(25 , 30)
+
+
+for i in range (3):
+    
+    gap = random.randint(20, 25) * 2
+   
+    y= mc.getHeight(a, b)
+    
+    
+    pillar(a, y, b)
+    pillar(a, y, b + random.randint(62, 67))
+    
+    a = a + gap
+
+x = pos.x + 5
+z = pos.z + 3
+
+
+def fence():
+    #SIDE 1
+    mc.setBlocks(x, y+ 1, z -1, x , y + 5, z + 56, block.FENCE_DARK_OAK)
+    mc.setBlocks(x, y+ 1, z + 66, x , y + 5, z + 139, block.FENCE_DARK_OAK)
+    
+    #SIDE 2
+    d = pos.x + 145
+    mc.setBlocks(d, y+ 1, z -2, d , y + 5, z + 56, block.FENCE_DARK_OAK)
+    mc.setBlocks(d, y+ 1, z + 66, d , y + 5, z + 139, block.FENCE_DARK_OAK)
+
+    #SIDE 3
+    mc.setBlocks(x, y+ 1, z -2, x + 140, y + 5, z -2, block.FENCE_DARK_OAK)
+    
+    #SIDE 4
+    e  = pos.z + 144
+    mc.setBlocks(x, y+ 1, e -2, x + 140, y + 5, e -2, block.FENCE_DARK_OAK)
+    
+fence()
+
+
+
+
+def tree(x, y, z):
+    mc.setBlocks(x,y+1,z, x, y + 10, z, block.WOOD)
+    mc.setBlocks(x -3, y+11, z -3, x +3, y + 11, z +3, block.LEAVES)
+    mc.setBlocks(x -2, y+12, z -2, x +2, y + 12, z +2, block.LEAVES)
+    mc.setBlocks(x -1, y+13, z -1, x +1, y + 13, z +1, block.LEAVES)
+
+
+x = pos.x + 10
+z = pos.z + 3
+
+for i in range(16):
+    
+    tree(x, y, z)
+    tree(x, y, z +51)
+    tree(x, y, z +71)
+    tree(x, y, z +137)
+    
+    x = x + 8
+
+g = pos.x + 15
+s= pos.z + 119
+
+def garden(g, s):
+    mc.setBlocks(g, y, s+1, g + 55, y+2 , s + 18, block.FARMLAND)
+    mc.setBlocks(g, y + 1, s+1, g + 55, y+ 2 , s + 18, block.FLOWER_YELLOW)   
+    mc.setBlocks(g + 60, y, s+1, g + 115, y+2 , s + 18, block.FARMLAND)
+    mc.setBlocks(g+ 60, y + 1, s+1, g + 115, y+ 2 , s + 18, block.FLOWER_CYAN)
+garden(g, s)
