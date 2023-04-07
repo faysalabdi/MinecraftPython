@@ -1,4 +1,4 @@
-# Minecraft Village
+# MinecraftPython
 
 Minecraft Procedural Village Generator Project
 
@@ -18,6 +18,8 @@ Create a short video presentation explaining the implementation and justifying t
 Participate in group consultations with teaching staff.
 This project aims to refresh Python programming skills and familiarize students with high-level API development while encouraging creativity in village design and layout.
 
+
+## Development Diary
 
 **Week 1**
 * Faysal Abdiwahab (s3783895)
@@ -129,4 +131,4 @@ Ahamd Akkad (s3920007)
      
 
     
-# MinecraftPython
+
