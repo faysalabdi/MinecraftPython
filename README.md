@@ -19,6 +19,9 @@ Participate in group consultations with teaching staff.
 This project aims to refresh Python programming skills and familiarize students with high-level API development while encouraging creativity in village design and layout.
 
 
+DEMONSTRATION: https://youtu.be/an9XQ5VCwec
+
+
 ## Development Diary
 
 **Week 1**
